@@ -88,13 +88,7 @@ export function DealCard({ deal }: DealCardProps) {
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <AlertTriangle className="h-4 w-4 text-muted-foreground" />
-            <Badge variant="outline" className={riskColors[deal.riskLevel]}>
-              {deal.riskLevel} Risk
-            </Badge>
-          </div>
+        <div className="flex items-center justify-end">
           <div className="flex items-center gap-1 text-sm text-muted-foreground">
             <Clock className="h-4 w-4" />
             <span>{deal.deadline}</span>
