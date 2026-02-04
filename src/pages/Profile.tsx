@@ -48,10 +48,6 @@ const Profile = () => {
                   Member since {userProfile.memberSince}
                 </p>
               </div>
-              <Button variant="outline" className="gap-2">
-                <Edit2 className="h-4 w-4" />
-                Edit Photo
-              </Button>
             </div>
           </CardContent>
         </Card>
