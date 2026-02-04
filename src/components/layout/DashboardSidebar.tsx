@@ -1,4 +1,4 @@
-import { LayoutDashboard, Wallet, User, LogOut, Menu } from "lucide-react";
+import { LayoutDashboard, Wallet, User, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,32 +26,48 @@ export function DashboardSidebar() {
   const isCollapsed = state === "collapsed";
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-border">
-      <div className="flex h-16 items-center justify-between px-4 border-b border-border">
+    <Sidebar collapsible="icon" className="border-r border-border/50 bg-card/50 backdrop-blur-sm">
+      {/* Header */}
+      <div className="flex h-16 items-center justify-between px-4 border-b border-border/50">
         {!isCollapsed && (
-          <span className="text-lg font-light tracking-tight">
-            TOTO <span className="text-gradient-gold font-medium">Finance</span>
-          </span>
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
+              <span className="text-primary font-semibold text-sm">TF</span>
+            </div>
+            <span className="text-lg font-light tracking-tight">
+              TOTO <span className="text-gradient-gold font-medium">Finance</span>
+            </span>
+          </div>
         )}
-        <SidebarTrigger className="ml-auto">
-          <Menu className="h-5 w-5" />
+        {isCollapsed && (
+          <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center mx-auto">
+            <span className="text-primary font-semibold text-sm">TF</span>
+          </div>
+        )}
+      </div>
+
+      {/* Toggle Button */}
+      <div className="px-3 py-3 border-b border-border/50">
+        <SidebarTrigger className="w-full h-8 flex items-center justify-center rounded-md hover:bg-sidebar-accent transition-colors text-muted-foreground hover:text-foreground">
+          {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
         </SidebarTrigger>
       </div>
 
-      <SidebarContent className="flex flex-col justify-between h-[calc(100vh-4rem)]">
-        <SidebarGroup className="pt-4">
+      <SidebarContent className="flex flex-col justify-between flex-1">
+        {/* Navigation */}
+        <SidebarGroup className="pt-4 px-3">
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-1">
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild className="p-0">
                     <NavLink
                       to={item.url}
-                      className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-sidebar-accent transition-colors"
-                      activeClassName="bg-sidebar-accent text-primary font-medium"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-sidebar-accent/80 transition-all duration-200 group"
+                      activeClassName="bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary font-medium shadow-sm"
                     >
-                      <item.icon className="h-5 w-5" />
-                      {!isCollapsed && <span>{item.title}</span>}
+                      <item.icon className="h-5 w-5 transition-transform duration-200 group-hover:scale-105" />
+                      {!isCollapsed && <span className="text-sm">{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -60,29 +76,34 @@ export function DashboardSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <div className="p-4 space-y-4">
-          <Separator />
-          <div className="flex items-center gap-3">
-            <Avatar className="h-9 w-9">
+        {/* User Section */}
+        <div className="p-3 mt-auto">
+          <Separator className="mb-4 bg-border/50" />
+          
+          {/* User Info */}
+          <div className={`flex items-center gap-3 p-2 rounded-lg bg-sidebar-accent/50 mb-3 ${isCollapsed ? "justify-center" : ""}`}>
+            <Avatar className="h-9 w-9 ring-2 ring-primary/20 ring-offset-2 ring-offset-background">
               <AvatarImage src="" alt="User" />
-              <AvatarFallback className="bg-primary text-primary-foreground text-sm">
+              <AvatarFallback className="bg-primary text-primary-foreground text-sm font-medium">
                 JD
               </AvatarFallback>
             </Avatar>
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium truncate">John Doe</p>
+                <p className="text-sm font-medium truncate text-foreground">John Doe</p>
                 <p className="text-xs text-muted-foreground truncate">john@example.com</p>
               </div>
             )}
           </div>
+
+          {/* Logout Button */}
           <Button
             variant="ghost"
-            className={`w-full justify-start text-muted-foreground hover:text-foreground hover:bg-sidebar-accent ${isCollapsed ? "px-2" : ""}`}
+            className={`w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors ${isCollapsed ? "justify-center px-2" : "px-3"}`}
             onClick={() => console.log("Logout")}
           >
-            <LogOut className="h-5 w-5" />
-            {!isCollapsed && <span className="ml-3">Logout</span>}
+            <LogOut className="h-4 w-4" />
+            {!isCollapsed && <span className="ml-3 text-sm">Logout</span>}
           </Button>
         </div>
       </SidebarContent>
