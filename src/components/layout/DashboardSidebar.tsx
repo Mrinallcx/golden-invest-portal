@@ -28,26 +28,19 @@ export function DashboardSidebar() {
   const isCollapsed = state === "collapsed";
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-border/50 bg-card/50 backdrop-blur-sm">
+    <Sidebar collapsible="icon" className="border-r border-border bg-background">
       {/* Header */}
-      <div className="flex h-16 items-center justify-start px-4 border-b border-border/50">
+      <div className="h-16 flex items-center px-5 border-b border-border">
         {!isCollapsed ? (
-          <img src={totoFinanceLogo} alt="TOTO Finance" className="h-12 w-auto" />
+          <img src={totoFinanceLogo} alt="TOTO Finance" className="h-10 w-auto" />
         ) : (
-          <img src={totoIcon} alt="TOTO" className="h-12 w-12" />
+          <img src={totoIcon} alt="TOTO" className="h-9 w-9" />
         )}
       </div>
 
-      {/* Toggle Button */}
-      <div className="px-3 py-3 border-b border-border/50">
-        <SidebarTrigger className="w-full h-8 flex items-center justify-center rounded-md hover:bg-sidebar-accent transition-colors text-muted-foreground hover:text-foreground">
-          {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-        </SidebarTrigger>
-      </div>
-
-      <SidebarContent className="flex flex-col justify-between flex-1">
+      <SidebarContent className="flex flex-col h-full">
         {/* Navigation */}
-        <SidebarGroup className="pt-4 px-3">
+        <SidebarGroup className="flex-1 py-6 px-3">
           <SidebarGroupContent>
             <SidebarMenu className="space-y-1">
               {navItems.map((item) => (
@@ -55,10 +48,10 @@ export function DashboardSidebar() {
                   <SidebarMenuButton asChild className="p-0">
                     <NavLink
                       to={item.url}
-                      className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-sidebar-accent/80 transition-all duration-200 group"
-                      activeClassName="bg-primary/10 text-primary hover:bg-primary/15 hover:text-primary font-medium shadow-sm"
+                      className="flex items-center gap-3 px-3 py-2.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                      activeClassName="bg-primary/10 text-primary font-medium"
                     >
-                      <item.icon className="h-5 w-5 transition-transform duration-200 group-hover:scale-105" />
+                      <item.icon className="h-5 w-5 flex-shrink-0" />
                       {!isCollapsed && <span className="text-sm">{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
@@ -68,34 +61,43 @@ export function DashboardSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* User Section */}
-        <div className="p-3 mt-auto">
-          <Separator className="mb-4 bg-border/50" />
-          
-          {/* User Info */}
-          <div className={`flex items-center gap-3 p-2 rounded-lg bg-sidebar-accent/50 mb-3 ${isCollapsed ? "justify-center" : ""}`}>
-            <Avatar className="h-9 w-9 ring-2 ring-primary/20 ring-offset-2 ring-offset-background">
+        {/* Footer */}
+        <div className="mt-auto border-t border-border p-4">
+          {/* Toggle */}
+          <SidebarTrigger className={`w-full h-9 flex items-center gap-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors mb-3 ${isCollapsed ? "justify-center" : "px-3"}`}>
+            {isCollapsed ? <ChevronRight className="h-4 w-4" /> : (
+              <>
+                <ChevronLeft className="h-4 w-4" />
+                <span className="text-sm">Collapse</span>
+              </>
+            )}
+          </SidebarTrigger>
+
+          {/* User */}
+          <div className={`flex items-center gap-3 py-2 ${isCollapsed ? "justify-center" : ""}`}>
+            <Avatar className="h-8 w-8">
               <AvatarImage src="" alt="User" />
-              <AvatarFallback className="bg-primary text-primary-foreground text-sm font-medium">
+              <AvatarFallback className="bg-primary/10 text-primary text-xs font-medium">
                 JD
               </AvatarFallback>
             </Avatar>
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium truncate text-foreground">John Doe</p>
+                <p className="text-sm font-medium truncate">John Doe</p>
                 <p className="text-xs text-muted-foreground truncate">john@example.com</p>
               </div>
             )}
           </div>
 
-          {/* Logout Button */}
+          {/* Logout */}
           <Button
             variant="ghost"
-            className={`w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors ${isCollapsed ? "justify-center px-2" : "px-3"}`}
+            size="sm"
+            className={`w-full mt-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 ${isCollapsed ? "justify-center px-0" : "justify-start"}`}
             onClick={() => console.log("Logout")}
           >
             <LogOut className="h-4 w-4" />
-            {!isCollapsed && <span className="ml-3 text-sm">Logout</span>}
+            {!isCollapsed && <span className="ml-2">Logout</span>}
           </Button>
         </div>
       </SidebarContent>
