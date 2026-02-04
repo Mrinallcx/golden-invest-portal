@@ -249,7 +249,7 @@ export function KYCModal({ open, onOpenChange, onComplete }: KYCModalProps) {
             <div className="space-y-3 bg-muted/50 rounded-lg p-4">
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Full Name</span>
-                <span className="font-medium">{formData.fullName || "John Doe"}</span>
+                <span className="font-medium">{formData.fullName || "Steven Gaertner"}</span>
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-muted-foreground">Date of Birth</span>

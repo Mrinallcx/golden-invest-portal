@@ -65,12 +65,12 @@ export function DashboardSidebar() {
             <Avatar className="h-8 w-8 shrink-0">
               <AvatarImage src="" alt="User" />
               <AvatarFallback className="bg-primary/10 text-primary text-xs font-medium">
-                JD
+                SG
               </AvatarFallback>
             </Avatar>
             <div className="flex-1 min-w-0 overflow-hidden group-data-[collapsible=icon]:w-0 group-data-[collapsible=icon]:opacity-0 transition-all duration-200">
-              <p className="text-sm font-medium truncate">John Doe</p>
-              <p className="text-xs text-muted-foreground truncate">john@example.com</p>
+              <p className="text-sm font-medium truncate">Steven Gaertner</p>
+              <p className="text-xs text-muted-foreground truncate">steven@totofinance.co</p>
             </div>
           </div>
 

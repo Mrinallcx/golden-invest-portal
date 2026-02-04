@@ -10,8 +10,8 @@ import { CheckCircle, Shield, User, Mail, Phone, MapPin, Edit2 } from "lucide-re
 
 const Profile = () => {
   const userProfile = {
-    name: "John Doe",
-    email: "john.doe@example.com",
+    name: "Steven Gaertner",
+    email: "steven@totofinance.co",
     phone: "+1 (555) 123-4567",
     address: "123 Main Street, New York, NY 10001",
     kycStatus: "Verified",
@@ -33,7 +33,7 @@ const Profile = () => {
               <Avatar className="h-20 w-20">
                 <AvatarImage src="" alt={userProfile.name} />
                 <AvatarFallback className="bg-primary text-primary-foreground text-2xl">
-                  JD
+                  SG
                 </AvatarFallback>
               </Avatar>
               <div className="flex-1">
