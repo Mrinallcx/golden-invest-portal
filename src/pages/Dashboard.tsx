@@ -7,7 +7,7 @@ import { Search } from "lucide-react";
 const Dashboard = () => {
   return (
     <DashboardLayout>
-      <div className="space-y-8 animate-fade-in">
+      <div className="space-y-8 animate-fade-in max-w-6xl">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-light tracking-tight">Discover Deals</h1>
@@ -28,7 +28,7 @@ const Dashboard = () => {
           {mockDeals.map((deal, index) => (
             <div 
               key={deal.id} 
-              className="animate-slide-up"
+              className="animate-slide-up max-w-sm"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <DealCard deal={deal} />
