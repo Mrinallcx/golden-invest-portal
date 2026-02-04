@@ -32,9 +32,9 @@ export function DashboardSidebar() {
       {/* Header */}
       <div className="flex h-16 items-center justify-center px-4 border-b border-border/50">
         {!isCollapsed ? (
-          <img src={totoFinanceLogo} alt="TOTO Finance" className="h-8 w-auto" />
+          <img src={totoFinanceLogo} alt="TOTO Finance" className="h-12 w-auto" />
         ) : (
-          <img src={totoIcon} alt="TOTO" className="h-8 w-8" />
+          <img src={totoIcon} alt="TOTO" className="h-10 w-10" />
         )}
       </div>
 
