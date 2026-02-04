@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
+import totoFinanceLogo from "@/assets/toto-finance-logo.svg";
+import totoIcon from "@/assets/toto-icon.svg";
 
 const navItems = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
@@ -28,21 +30,11 @@ export function DashboardSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r border-border/50 bg-card/50 backdrop-blur-sm">
       {/* Header */}
-      <div className="flex h-16 items-center justify-between px-4 border-b border-border/50">
-        {!isCollapsed && (
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center">
-              <span className="text-primary font-semibold text-sm">TF</span>
-            </div>
-            <span className="text-lg font-light tracking-tight">
-              TOTO <span className="text-gradient-gold font-medium">Finance</span>
-            </span>
-          </div>
-        )}
-        {isCollapsed && (
-          <div className="h-8 w-8 rounded-lg bg-primary/10 flex items-center justify-center mx-auto">
-            <span className="text-primary font-semibold text-sm">TF</span>
-          </div>
+      <div className="flex h-16 items-center justify-center px-4 border-b border-border/50">
+        {!isCollapsed ? (
+          <img src={totoFinanceLogo} alt="TOTO Finance" className="h-8 w-auto" />
+        ) : (
+          <img src={totoIcon} alt="TOTO" className="h-8 w-8" />
         )}
       </div>
 
