@@ -20,12 +20,6 @@ import {
 import { KYCModal } from "@/components/kyc/KYCModal";
 import { PaymentModal } from "@/components/payment/PaymentModal";
 
-const riskColors = {
-  Low: "bg-green-100 text-green-800 border-green-200",
-  Medium: "bg-yellow-100 text-yellow-800 border-yellow-200",
-  High: "bg-red-100 text-red-800 border-red-200",
-};
-
 const investmentSummaryRows: { label: string; value: string }[] = [
   { label: "Issuer", value: "NYSE-Listed Mining Company (Confidential)" },
   { label: "Asset Type", value: "In-Ground Copper Reserves" },
@@ -43,8 +37,8 @@ const investmentSummaryRows: { label: string; value: string }[] = [
 ];
 
 const DealDetail = () => {
-  const { id } = useParams<{ id: string }>();
-  const deal = mockDeals.find((d) => d.id === id);
+  const { slug } = useParams<{ slug: string }>();
+  const deal = mockDeals.find((d) => d.slug === slug || d.id === slug);
   
   const [showKYC, setShowKYC] = useState(false);
   const [showPayment, setShowPayment] = useState(false);
@@ -100,19 +94,21 @@ const DealDetail = () => {
           <div className="lg:col-span-2 space-y-6">
             {/* Header Image */}
             <div className="h-64 md:h-80 bg-gradient-to-br from-muted to-secondary rounded-lg overflow-hidden relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-8xl font-light text-muted-foreground/20">
-                  {deal.title.charAt(0)}
-                </span>
-              </div>
+              {deal.imageUrl ? (
+                <img
+                  src={deal.imageUrl}
+                  alt={deal.title}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-8xl font-light text-muted-foreground/20">
+                    {deal.title.charAt(0)}
+                  </span>
+                </div>
+              )}
               <Badge className="absolute top-4 left-4 bg-background/90 text-foreground border-0">
                 {deal.category}
-              </Badge>
-              <Badge 
-                variant="outline" 
-                className={`absolute top-4 right-4 ${riskColors[deal.riskLevel]}`}
-              >
-                {deal.riskLevel} Risk
               </Badge>
             </div>
 

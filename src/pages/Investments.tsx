@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { mockInvestments, mockDocuments } from "@/data/mockInvestments";
+import { mockDeals } from "@/data/mockDeals";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -166,7 +167,7 @@ const Investments = () => {
                           Invested on {new Date(investment.investedDate).toLocaleDateString()}
                         </p>
                         <Button asChild variant="ghost" size="sm" className="text-primary">
-                          <Link to={`/deals/${investment.dealId}`}>View Deal</Link>
+                          <Link to={`/deals/${mockDeals.find((d) => d.id === investment.dealId)?.slug ?? investment.dealId}`}>View Deal</Link>
                         </Button>
                       </div>
                     </CardContent>

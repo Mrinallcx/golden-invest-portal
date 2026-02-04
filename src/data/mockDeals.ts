@@ -4,7 +4,7 @@ export const mockDeals: Deal[] = [
   {
     id: "1",
     title: "COPTT — Tokenized Copper Reserve",
-    category: "Green Energy",
+    category: "Commodities",
     description: "A tokenized forward sale of in-ground copper reserves, giving institutional investors discounted, transparent, on-chain exposure to future copper production. Backed by geological certification, regulatory compliance, and optional physical redemption.",
     targetAmount: 500000,
     raisedAmount: 385000,
@@ -18,6 +18,8 @@ export const mockDeals: Deal[] = [
     maxInvestmentAmount: "N/A",
     issueDate: "15 October 2025",
     term: "12 months",
+    imageUrl: "/copper.webp",
+    slug: "$COPTT-tokenized-copper-reserve",
   },
   {
     id: "2",
@@ -36,6 +38,8 @@ export const mockDeals: Deal[] = [
     maxInvestmentAmount: "CHF 500,000",
     issueDate: "1 November 2025",
     term: "24 months",
+    imageUrl: "/tech%20startup.webp",
+    slug: "tech-startup-portfolio",
   },
   {
     id: "3",
@@ -54,6 +58,8 @@ export const mockDeals: Deal[] = [
     maxInvestmentAmount: "N/A",
     issueDate: "20 September 2025",
     term: "18 months",
+    imageUrl: "/real%20estate.webp",
+    slug: "real-estate-development",
   },
   {
     id: "4",
@@ -72,5 +78,7 @@ export const mockDeals: Deal[] = [
     maxInvestmentAmount: "CHF 200,000",
     issueDate: "5 December 2025",
     term: "36 months",
+    imageUrl: "/health%20care.webp",
+    slug: "healthcare-innovation-fund",
   },
 ];

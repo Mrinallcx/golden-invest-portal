@@ -27,6 +27,8 @@ export interface Deal {
   issueDate: string;
   /** Term (e.g. "12 months") */
   term: string;
+  /** URL slug (e.g. "$COPTT-tokenized-copper-reserve") */
+  slug: string;
 }
 
 interface DealCardProps {
@@ -96,7 +98,7 @@ export function DealCard({ deal, comingSoon = false }: DealCardProps) {
             asChild 
             className="w-full bg-cta text-cta-foreground hover:bg-cta/90 hover:shadow-gold transition-all group-hover:shadow-gold"
           >
-            <Link to={`/deals/${deal.id}`}>View Details</Link>
+            <Link to={`/deals/${deal.slug}`}>View Details</Link>
           </Button>
         )}
       </CardFooter>
