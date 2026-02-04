@@ -61,16 +61,6 @@ export function DealCard({ deal }: DealCardProps) {
       </CardHeader>
       
       <CardContent className="space-y-4">
-        <div className="space-y-2">
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Raised</span>
-            <span className="font-medium">
-              {formatCurrency(deal.raisedAmount)} / {formatCurrency(deal.targetAmount)}
-            </span>
-          </div>
-          <Progress value={progress} className="h-2 bg-muted" />
-        </div>
-
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div className="flex items-center gap-2">
             <DollarSign className="h-4 w-4 text-muted-foreground" />
