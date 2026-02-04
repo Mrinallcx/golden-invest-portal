@@ -20,9 +20,11 @@ const SignIn = () => {
       <Card className="w-full max-w-md shadow-card animate-fade-in">
         <CardHeader className="text-center space-y-2">
           <div className="flex justify-center mb-4">
-            <span className="text-2xl font-light tracking-tight">
-              TOTO <span className="text-gradient-gold font-medium">Finance</span>
-            </span>
+            <img
+              src="/toto%20finance.svg"
+              alt="TOTO Finance"
+              className="h-8 w-auto"
+            />
           </div>
           <CardTitle className="text-2xl font-light">Welcome back</CardTitle>
           <CardDescription>Sign in to your account to continue</CardDescription>

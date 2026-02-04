@@ -24,14 +24,14 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {mockDeals.map((deal, index) => (
             <div 
               key={deal.id} 
-              className="animate-slide-up"
+              className="animate-slide-up min-w-0 h-full"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <DealCard deal={deal} />
+              <DealCard deal={deal} comingSoon={index > 0} />
             </div>
           ))}
         </div>

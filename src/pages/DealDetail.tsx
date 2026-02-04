@@ -5,8 +5,8 @@ import { mockDeals } from "@/data/mockDeals";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
+import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
 import { 
   ArrowLeft, 
   Clock, 
@@ -15,8 +15,7 @@ import {
   Target, 
   FileText,
   AlertTriangle,
-  DollarSign,
-  CheckCircle
+  DollarSign
 } from "lucide-react";
 import { KYCModal } from "@/components/kyc/KYCModal";
 import { PaymentModal } from "@/components/payment/PaymentModal";
@@ -26,6 +25,22 @@ const riskColors = {
   Medium: "bg-yellow-100 text-yellow-800 border-yellow-200",
   High: "bg-red-100 text-red-800 border-red-200",
 };
+
+const investmentSummaryRows: { label: string; value: string }[] = [
+  { label: "Issuer", value: "NYSE-Listed Mining Company (Confidential)" },
+  { label: "Asset Type", value: "In-Ground Copper Reserves" },
+  { label: "Token Name", value: "COPTT" },
+  { label: "Token Standard", value: "ERC-20 (Ethereum)" },
+  { label: "Total Supply", value: "300,000,000" },
+  { label: "Unit Representation", value: "1 lb LME Grade A Copper" },
+  { label: "Offering Price", value: "30% Discount to Futures" },
+  { label: "Example Price", value: "$5.80/lb futures → $4.06/COPTT" },
+  { label: "Redemption Term", value: "48 Months (Amortized)" },
+  { label: "Physical Settlement", value: "Optional (Warehouse Warrants)" },
+  { label: "Investor Eligibility", value: "Accredited / Institutional Only" },
+  { label: "Compliance", value: "KYC/AML Required" },
+  { label: "Jurisdiction", value: "Details Confidential" },
+];
 
 const DealDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -48,7 +63,6 @@ const DealDetail = () => {
     );
   }
 
-  const progress = (deal.raisedAmount / deal.targetAmount) * 100;
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -186,55 +200,29 @@ const DealDetail = () => {
             </Card>
           </div>
 
-          {/* Sidebar - Investment CTA */}
+          {/* Sidebar - Investment Summary */}
           <div className="space-y-6">
             <Card className="shadow-card sticky top-6">
               <CardHeader>
                 <CardTitle className="text-lg font-medium">Investment Summary</CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Progress</span>
-                    <span className="font-medium">{progress.toFixed(0)}%</span>
-                  </div>
-                  <Progress value={progress} className="h-3 bg-muted" />
-                  <p className="text-sm text-muted-foreground">
-                    {formatCurrency(deal.raisedAmount)} of {formatCurrency(deal.targetAmount)} raised
-                  </p>
-                </div>
+                <Table>
+                  <TableBody className="text-xs">
+                    {investmentSummaryRows.map((row) => (
+                      <TableRow key={row.label} className="border-b border-muted">
+                        <TableCell className="py-2 pr-3 font-medium text-muted-foreground whitespace-nowrap align-top w-[1%]">
+                          {row.label}
+                        </TableCell>
+                        <TableCell className="py-2 pl-0 text-foreground align-top">
+                          {row.value}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
 
                 <Separator />
-
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Min. Investment</span>
-                    <span className="font-medium">{formatCurrency(deal.minInvestment)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Max. Investment</span>
-                    <span className="font-medium">{formatCurrency(deal.targetAmount * 0.1)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Expected Return</span>
-                    <span className="font-medium text-primary">{deal.expectedReturn}</span>
-                  </div>
-                </div>
-
-                <Separator />
-
-                <div className="space-y-3">
-                  <h4 className="font-medium flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-600" />
-                    Key Highlights
-                  </h4>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>• Vetted by our investment team</li>
-                    <li>• Quarterly dividend payouts</li>
-                    <li>• Fully transparent reporting</li>
-                    <li>• Exit options available</li>
-                  </ul>
-                </div>
 
                 <Button 
                   onClick={handleInvestClick}

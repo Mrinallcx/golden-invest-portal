@@ -8,15 +8,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import {
-  DollarSign,
   TrendingUp,
-  TrendingDown,
   Clock,
   CheckCircle,
   FileText,
   Download,
-  BarChart3,
-  Wallet,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -64,44 +60,29 @@ const Investments = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <Card className="shadow-card">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Total Invested</p>
-                  <p className="text-2xl font-light mt-1">{formatCurrency(totalInvested)}</p>
-                </div>
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Wallet className="h-6 w-6 text-primary" />
-                </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Total Invested</p>
+                <p className="text-2xl font-light mt-1">{formatCurrency(totalInvested)}</p>
               </div>
             </CardContent>
           </Card>
 
           <Card className="shadow-card">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Current Value</p>
-                  <p className="text-2xl font-light mt-1">{formatCurrency(totalValue)}</p>
-                </div>
-                <div className="p-3 rounded-full bg-green-100">
-                  <DollarSign className="h-6 w-6 text-green-600" />
-                </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Current Value</p>
+                <p className="text-2xl font-light mt-1">{formatCurrency(totalValue)}</p>
               </div>
             </CardContent>
           </Card>
 
           <Card className="shadow-card">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Total Returns</p>
-                  <p className="text-2xl font-light mt-1 text-green-600">
-                    +{formatCurrency(totalReturns)}
-                  </p>
-                </div>
-                <div className="p-3 rounded-full bg-green-100">
-                  <TrendingUp className="h-6 w-6 text-green-600" />
-                </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Total Returns</p>
+                <p className="text-2xl font-light mt-1 text-green-600">
+                  +{formatCurrency(totalReturns)}
+                </p>
               </div>
               <p className="text-sm text-green-600 mt-2">+{overallReturnPercentage}% overall</p>
             </CardContent>
@@ -109,14 +90,9 @@ const Investments = () => {
 
           <Card className="shadow-card">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-muted-foreground">Investments</p>
-                  <p className="text-2xl font-light mt-1">{mockInvestments.length}</p>
-                </div>
-                <div className="p-3 rounded-full bg-blue-100">
-                  <BarChart3 className="h-6 w-6 text-blue-600" />
-                </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Investments</p>
+                <p className="text-2xl font-light mt-1">{mockInvestments.length}</p>
               </div>
               <div className="flex gap-3 mt-2 text-xs">
                 <span className="text-green-600">{activeCount} Active</span>
