@@ -30,11 +30,11 @@ export function DashboardSidebar() {
   return (
     <Sidebar collapsible="icon" className="border-r border-border/50 bg-card/50 backdrop-blur-sm">
       {/* Header */}
-      <div className="flex h-16 items-center justify-center px-4 border-b border-border/50">
+      <div className="flex h-16 items-center justify-start px-4 border-b border-border/50">
         {!isCollapsed ? (
           <img src={totoFinanceLogo} alt="TOTO Finance" className="h-12 w-auto" />
         ) : (
-          <img src={totoIcon} alt="TOTO" className="h-10 w-10" />
+          <img src={totoIcon} alt="TOTO" className="h-12 w-12" />
         )}
       </div>
 
