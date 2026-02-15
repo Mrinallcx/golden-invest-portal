@@ -8,52 +8,80 @@ export interface Investment {
   investedDate: string;
   status: "Pending" | "Active" | "Completed";
   returnPercentage: number;
+  /** Extra details for token investments */
+  tokenDetails?: {
+    tokensHeld: string;
+    entryPrice: string;
+    currentPrice?: string;
+    discountAtPurchase?: string;
+    currentSpot?: string;
+    redemptionStart?: string;
+    interestAccrued?: string;
+    /** Yield-specific fields */
+    estAnnualYield?: string;
+    nextDistribution?: string;
+    totalDistributions?: string;
+  };
 }
 
 export const mockInvestments: Investment[] = [
   {
     id: "inv-1",
-    dealId: "3",
-    dealTitle: "Real Estate Development",
-    category: "Real Estate",
-    investedAmount: 25000,
-    currentValue: 27500,
-    investedDate: "2024-08-15",
+    dealId: "1",
+    dealTitle: "COPTT — Tokenized Copper Reserve",
+    category: "Commodities",
+    investedAmount: 75000,
+    currentValue: 86250,
+    investedDate: "2025-11-15",
     status: "Active",
-    returnPercentage: 10,
+    returnPercentage: 15,
+    tokenDetails: {
+      tokensHeld: "16,741",
+      entryPrice: "$4.48/token",
+      currentPrice: "$5.15/token",
+      discountAtPurchase: "20%",
+      currentSpot: "$5.60/lb (LME)",
+      redemptionStart: "2030",
+      interestAccrued: "2% p.a.",
+    },
   },
   {
     id: "inv-2",
-    dealId: "1",
-    dealTitle: "Sustainable Energy Fund",
-    category: "Green Energy",
-    investedAmount: 5000,
-    currentValue: 5650,
-    investedDate: "2024-09-01",
+    dealId: "5",
+    dealTitle: "TINTT — Tokenized Tin Reserve",
+    category: "Commodities",
+    investedAmount: 50000,
+    currentValue: 57500,
+    investedDate: "2025-12-01",
     status: "Active",
-    returnPercentage: 13,
+    returnPercentage: 15,
+    tokenDetails: {
+      tokensHeld: "2.5 TINTT",
+      entryPrice: "~$40,000/token",
+      currentPrice: "$46,000/token",
+      discountAtPurchase: "25%",
+      currentSpot: "$48,000/tonne (LME)",
+      redemptionStart: "36-month delivery window",
+      interestAccrued: "Pilot Deal — Producing (Commissioning)",
+    },
   },
   {
     id: "inv-3",
     dealId: "6",
-    dealTitle: "Agricultural Tech",
-    category: "Agriculture",
-    investedAmount: 3000,
-    currentValue: 3000,
-    investedDate: "2024-12-01",
+    dealTitle: "PANTT — Tokenized Solar Energy Infrastructure",
+    category: "Green Energy",
+    investedAmount: 60000,
+    currentValue: 67500,
+    investedDate: "2026-01-15",
     status: "Pending",
-    returnPercentage: 0,
-  },
-  {
-    id: "inv-4",
-    dealId: "5",
-    dealTitle: "Luxury Hotel Chain",
-    category: "Hospitality",
-    investedAmount: 15000,
-    currentValue: 18750,
-    investedDate: "2024-03-10",
-    status: "Completed",
-    returnPercentage: 25,
+    returnPercentage: 12.5,
+    tokenDetails: {
+      tokensHeld: "60,000 PANTT",
+      entryPrice: "$1.00/token",
+      estAnnualYield: "10-12%",
+      nextDistribution: "Q2 2026",
+      totalDistributions: "$0 (pending first distribution)",
+    },
   },
 ];
 
@@ -69,36 +97,85 @@ export const mockDocuments: Document[] = [
   {
     id: "doc-1",
     investmentId: "inv-1",
-    name: "Investment Confirmation",
+    name: "COPTT Investment Agreement",
     type: "confirmation",
-    date: "2024-08-15",
+    date: "2025-11-15",
   },
   {
     id: "doc-2",
     investmentId: "inv-1",
-    name: "Ownership Certificate",
-    type: "certificate",
-    date: "2024-08-20",
+    name: "COPTT Token Receipt",
+    type: "receipt",
+    date: "2025-11-15",
   },
   {
     id: "doc-3",
-    investmentId: "inv-2",
-    name: "Investment Confirmation",
-    type: "confirmation",
-    date: "2024-09-01",
+    investmentId: "inv-1",
+    name: "COPTT Prospectus",
+    type: "report",
+    date: "2025-11-15",
   },
   {
     id: "doc-4",
-    investmentId: "inv-4",
-    name: "Final Settlement Receipt",
-    type: "receipt",
-    date: "2024-12-15",
+    investmentId: "inv-1",
+    name: "KYC Verification",
+    type: "certificate",
+    date: "2025-11-10",
   },
   {
     id: "doc-5",
-    investmentId: "inv-4",
-    name: "Q4 Performance Report",
+    investmentId: "inv-2",
+    name: "TINTT Investment Agreement",
+    type: "confirmation",
+    date: "2025-12-01",
+  },
+  {
+    id: "doc-6",
+    investmentId: "inv-2",
+    name: "TINTT Token Receipt",
+    type: "receipt",
+    date: "2025-12-01",
+  },
+  {
+    id: "doc-8",
+    investmentId: "inv-2",
+    name: "TINTT Prospectus",
     type: "report",
-    date: "2024-12-20",
+    date: "2025-12-01",
+  },
+  {
+    id: "doc-9",
+    investmentId: "inv-2",
+    name: "KYC Verification",
+    type: "certificate",
+    date: "2025-11-10",
+  },
+  {
+    id: "doc-7",
+    investmentId: "inv-3",
+    name: "PANTT Investment Agreement",
+    type: "confirmation",
+    date: "2026-01-15",
+  },
+  {
+    id: "doc-10",
+    investmentId: "inv-3",
+    name: "PANTT Token Receipt",
+    type: "receipt",
+    date: "2026-01-15",
+  },
+  {
+    id: "doc-11",
+    investmentId: "inv-3",
+    name: "PANTT Prospectus",
+    type: "report",
+    date: "2026-01-15",
+  },
+  {
+    id: "doc-12",
+    investmentId: "inv-3",
+    name: "KYC Verification",
+    type: "certificate",
+    date: "2025-11-10",
   },
 ];

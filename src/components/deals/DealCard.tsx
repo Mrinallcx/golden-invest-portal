@@ -71,11 +71,11 @@ export function DealCard({ deal, comingSoon = false }: DealCardProps) {
       
       <CardHeader className="pb-5">
         <h3 className="text-lg font-medium line-clamp-1">{deal.title}</h3>
-        <p className="text-sm text-muted-foreground line-clamp-2">{deal.description}</p>
+        <p className={`text-sm text-muted-foreground line-clamp-2 ${comingSoon ? "blur-[5px] select-none" : ""}`}>{deal.description}</p>
       </CardHeader>
       
       <CardContent className="space-y-3 pt-0 flex-1">
-        <div className="grid grid-cols-1 gap-2 text-xs">
+        <div className={`grid grid-cols-1 gap-2 text-xs ${comingSoon ? "blur-[5px] select-none" : ""}`}>
           <InfoRow label="Equity" value={deal.equity} />
           <InfoRow label="Type of Investment" value={deal.typeOfInvestment} />
           <InfoRow label="Min. Investment Amount" value={deal.minInvestmentAmount} />

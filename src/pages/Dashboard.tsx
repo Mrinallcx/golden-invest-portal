@@ -31,7 +31,7 @@ const Dashboard = () => {
               className="animate-slide-up min-w-0 h-full"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <DealCard deal={deal} comingSoon={index > 0} />
+              <DealCard deal={deal} comingSoon={deal.id !== "1" && deal.id !== "5" && deal.id !== "6"} />
             </div>
           ))}
         </div>
