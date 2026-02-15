@@ -17,32 +17,43 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID ?? "";
 
-const App = () => (
-  <GoogleOAuthProvider clientId={googleClientId}>
-    <StagingAuthProvider>
-      <AuthGate>
-        <QueryClientProvider client={queryClient}>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <Routes>
-                <Route path="/" element={<Navigate to="/signin" replace />} />
-                <Route path="/signin" element={<SignIn />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/deals/:slug" element={<DealDetail />} />
-                <Route path="/investments" element={<Investments />} />
-                <Route path="/profile" element={<Profile />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </BrowserRouter>
-          </TooltipProvider>
-        </QueryClientProvider>
-      </AuthGate>
-    </StagingAuthProvider>
-  </GoogleOAuthProvider>
+const AppRoutes = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/signin" replace />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/deals/:slug" element={<DealDetail />} />
+          <Route path="/investments" element={<Investments />} />
+          <Route path="/profile" element={<Profile />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
 );
+
+const App = () => {
+  // If no Google Client ID is configured, skip the auth gate
+  if (!googleClientId || googleClientId === "your-google-oauth-client-id") {
+    return <AppRoutes />;
+  }
+
+  return (
+    <GoogleOAuthProvider clientId={googleClientId}>
+      <StagingAuthProvider>
+        <AuthGate>
+          <AppRoutes />
+        </AuthGate>
+      </StagingAuthProvider>
+    </GoogleOAuthProvider>
+  );
+};
 
 export default App;
