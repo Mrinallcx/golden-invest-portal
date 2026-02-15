@@ -231,9 +231,11 @@ const PanttDealDetail = () => {
           <div className="lg:col-span-2 space-y-6">
             {/* Header Image */}
             <div className="h-64 md:h-80 bg-gradient-to-br from-amber-100 to-yellow-50 rounded-lg overflow-hidden relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <Sun className="h-24 w-24 text-amber-300/40" />
-              </div>
+              <img
+                src="/solar.webp"
+                alt="PANTT — Tokenized Solar Energy Infrastructure"
+                className="w-full h-full object-cover"
+              />
               <Badge className="absolute top-4 left-4 bg-background/90 text-foreground border-0">
                 Green Energy
               </Badge>

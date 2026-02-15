@@ -177,9 +177,11 @@ const TinttDealDetail = () => {
           <div className="lg:col-span-2 space-y-6">
             {/* Header Image */}
             <div className="h-64 md:h-80 bg-gradient-to-br from-muted to-secondary rounded-lg overflow-hidden relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-8xl font-light text-muted-foreground/20">T</span>
-              </div>
+              <img
+                src="/tin%20b2b.webp"
+                alt="TINTT — Tokenized Tin Reserve"
+                className="w-full h-full object-cover"
+              />
               <Badge className="absolute top-4 left-4 bg-background/90 text-foreground border-0">
                 Commodities
               </Badge>

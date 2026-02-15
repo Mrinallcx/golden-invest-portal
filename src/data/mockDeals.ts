@@ -38,6 +38,7 @@ export const mockDeals: Deal[] = [
     maxInvestmentAmount: "$1,000,000",
     issueDate: "1 February 2026",
     term: "36 months",
+    imageUrl: "/tin%20b2b.webp",
     slug: "$TINTT-tokenized-tin-reserve",
   },
   {
@@ -57,6 +58,7 @@ export const mockDeals: Deal[] = [
     maxInvestmentAmount: "$2,000,000",
     issueDate: "15 January 2026",
     term: "25 years (PPA)",
+    imageUrl: "/solar.webp",
     slug: "$PANTT-tokenized-solar-energy",
   },
   {
