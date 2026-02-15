@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -7,8 +8,11 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { CheckCircle, Shield, User, Mail, Phone, MapPin, Edit2 } from "lucide-react";
+import { KYCModal } from "@/components/kyc/KYCModal";
 
 const Profile = () => {
+  const [showKYC, setShowKYC] = useState(false);
+
   const userProfile = {
     name: "Steven Gaertner",
     email: "steven@totofinance.co",
@@ -20,7 +24,7 @@ const Profile = () => {
 
   return (
     <DashboardLayout>
-      <div className="space-y-8 animate-fade-in max-w-3xl">
+      <div className="space-y-8 animate-fade-in max-w-3xl mx-auto">
         <div>
           <h1 className="text-3xl font-light tracking-tight">Profile</h1>
           <p className="text-muted-foreground mt-1">Manage your account settings</p>
@@ -122,6 +126,15 @@ const Profile = () => {
               <Badge className="bg-green-100 text-green-800 border-green-200">Verified</Badge>
             </div>
 
+            <div className="mt-4">
+              <Button
+                className="bg-cta text-cta-foreground hover:bg-cta/90"
+                onClick={() => setShowKYC(true)}
+              >
+                Check KYC
+              </Button>
+            </div>
+
             <Separator className="my-6" />
 
             <div className="space-y-3">
@@ -165,6 +178,12 @@ const Profile = () => {
           </CardContent>
         </Card>
       </div>
+
+      <KYCModal
+        open={showKYC}
+        onOpenChange={setShowKYC}
+        onComplete={() => setShowKYC(false)}
+      />
     </DashboardLayout>
   );
 };
